@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Age Calculator</title>
+<style>
+    *
+    {
+        padding:0px;
+        margin: 0px;
+        
+        
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url(./WhatsApp\ Image\ 2024-06-18\ at\ 22.06.12_9c7ea8db.jpg);
+        background-size: cover;
+
+      
+        
+        
+        }
+    form {
+        margin: 20px auto;
+        margin-top: 250px;
+        width: 300px;
+        text-align: center;
+    }
+    input[type="text"] {
+        width: 100px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    input[type="submit"] {
+        padding: 8px 20px;
+        border-radius: 25px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+    #result
+    {
+        background-color: bisque;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        height: 20px;
+        width:115px;
+        margin-left: 46%;
+        border-radius: 20px;
+
+    }
+</style>
+</head>
+<body>
+    <form id="ageCalculatorForm">
+        <label for="d"><h1 style="background-color: bisque;border-radius: 15px;">Date of Birth:</h1></label><br>
+        <input type="text" id="d" placeholder="Date" maxlength="2">
+        <input type="text" id="mob" placeholder="Month" maxlength="2">
+        <input type="text" id="yob" placeholder="Year" maxlength="4"><br>
+        <input type="submit" value="let's find your age!!">
+        <h4 style="margin-top: 5px;"> Result:</h4>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("ageCalculatorForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            var d = document.getElementById("d").value;
+            var mob = document.getElementById("mob").value;
+            var yob = document.getElementById("yob").value;
+
+         
+            if (d === '' || mob === '' || yob === '') {
+                alert("Please enter all fields.");
+                return;
+            }
+
+         
+            var birthDate = new Date(yob, mob - 1, d);
+
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+        
+            document.getElementById("result").innerHTML = "Your age is: " + age;
+        });
+    </script>
+</body>
+</html>
